@@ -1,0 +1,12 @@
+.btn_delete {
+  padding: 9px 5px;
+  border: 2px solid grey;
+  background: orangered;
+  border-radius: 10px;
+}
+
+.btn_create{
+  @extend .btn_delete;
+  background: lawngreen;
+
+}
