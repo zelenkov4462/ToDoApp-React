@@ -5,6 +5,8 @@ import PostForm from "./components/PostForm/PostForm";
 import Select from "./components/UI/select/Select";
 import Input from "./components/UI/input/Input";
 import PostFilter from "./components/PostFilter/PostFilter";
+import Modal from "./components/UI/modal/Modal";
+import Button from "./components/UI/button/Button";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -16,6 +18,7 @@ function App() {
   // const [searchQuery, setSearchQuery] = useState("");
 
   const [filter, setFilter] = useState({ sort: "", query: "" });
+  const [modal, setModal] = useState(false);
 
   const sortedPosts = useMemo(() => {
     console.log("asd");
@@ -47,18 +50,19 @@ function App() {
 
   return (
     <div className="App">
+      <Button
+        style={{ margin: "30px 0px 0px 5px" }}
+        cls="btn_create"
+        onClick={() => setModal(true)}
+      >
+        Создать пост
+      </Button>
+      <Modal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} />
+      </Modal>
       <h1>ToDo</h1>
-      <h2>Add new task</h2>
-      <PostForm create={createPost} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {sortedAndSearchedPosts.length ? (
-        <>
-          <h1>ToDo List</h1>
-          <PostList remove={removePost} posts={sortedAndSearchedPosts} />
-        </>
-      ) : (
-        <h1>No task</h1>
-      )}
+      <PostList remove={removePost} posts={sortedAndSearchedPosts} />
     </div>
   );
 }

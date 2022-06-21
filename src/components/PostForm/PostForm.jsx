@@ -18,6 +18,7 @@ const PostForm = ({ create }) => {
 
   return (
     <form>
+      <h2>Add new task</h2>
       <Input
         value={post.title}
         onChange={(e) => setPost({ ...post, title: e.target.value })}
