@@ -4,6 +4,8 @@ import { useState } from "react";
 import PostList from "./components/PostList/PostList";
 import PostForm from "./components/PostForm/PostForm";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import Select from "./components/UI/select/Select";
+import Input from "./components/UI/input/Input";
 
 function App() {
   const [posts, setPosts] = useState([
@@ -11,6 +13,8 @@ function App() {
     { id: 2, title: "HomeWork", body: "14:00 - 17:00", isChecked: false },
     { id: 3, title: "Dinner", body: "17:00 - 18:00", isChecked: false },
   ]);
+  const [selectedSort, setSelectedSort] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
@@ -20,12 +24,32 @@ function App() {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
+  const sortPosts = (sort) => {
+    setSelectedSort(sort);
+    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])));
+  };
+
   return (
     <div className="App">
       <h1>ToDo</h1>
       <h2>Add new task</h2>
       <PostForm create={createPost} />
-
+      <Input
+        cls="postForm__input"
+        placeholder="Поиск..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <Select
+        value={selectedSort}
+        onChange={sortPosts}
+        defaultValue="Сортировка"
+        options={[
+          { value: "title", name: "По названию" },
+          { value: "body", name: "По описанию" },
+          { value: "isChecked", name: "По выполнению" },
+        ]}
+      />
       {posts.length ? (
         <>
           <h1>ToDo List</h1>
