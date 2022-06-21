@@ -1,9 +1,7 @@
 import "./App.css";
-import PostItem from "./components/PostItem/PostItem";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PostList from "./components/PostList/PostList";
 import PostForm from "./components/PostForm/PostForm";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
 import Select from "./components/UI/select/Select";
 import Input from "./components/UI/input/Input";
 
@@ -16,6 +14,22 @@ function App() {
   const [selectedSort, setSelectedSort] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const sortedPosts = useMemo(() => {
+    console.log("asd");
+    if (selectedSort) {
+      return [...posts].sort((a, b) =>
+        a[selectedSort].localeCompare(b[selectedSort])
+      );
+    }
+    return posts;
+  }, [selectedSort, posts]);
+
+  const sortedAndSearchedPosts = useMemo(() => {
+    return sortedPosts.filter((post) =>
+      post.title.toLowerCase().includes(searchQuery)
+    );
+  }, [sortedPosts, searchQuery]);
+
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
   };
@@ -26,7 +40,6 @@ function App() {
 
   const sortPosts = (sort) => {
     setSelectedSort(sort);
-    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])));
   };
 
   return (
@@ -50,10 +63,10 @@ function App() {
           { value: "isChecked", name: "По выполнению" },
         ]}
       />
-      {posts.length ? (
+      {sortedAndSearchedPosts.length ? (
         <>
           <h1>ToDo List</h1>
-          <PostList remove={removePost} posts={posts} />
+          <PostList remove={removePost} posts={sortedAndSearchedPosts} />
         </>
       ) : (
         <h1>No task</h1>

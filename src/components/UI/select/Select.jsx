@@ -2,7 +2,11 @@ import React from "react";
 
 const Select = ({ defaultValue, options, value, onChange }) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <select
+      style={{ margin: "10px" }}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
       <option disabled>{defaultValue}</option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
