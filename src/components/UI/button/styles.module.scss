@@ -5,8 +5,17 @@
   border-radius: 10px;
 }
 
-.btn_create{
+.btn_create {
   @extend .btn_delete;
   background: lawngreen;
+  &:active {
+    background: orange;
+  }
+}
 
+.btn_filter {
+  padding: 9px 5px;
+  border: 2px solid grey;
+  background: royalblue;
+  border-radius: 10px;
 }

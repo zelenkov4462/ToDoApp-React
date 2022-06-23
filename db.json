@@ -1,0 +1,47 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Walk with dog",
+      "body": "sdfgh",
+      "isChecked": true
+    },
+    {
+      "id": 2,
+      "title": "Walk with cat",
+      "body": "sdfgh",
+      "isChecked": false
+    },
+    {
+      "id": 3,
+      "title": "Walk with kit",
+      "body": "sdfgh",
+      "isChecked": true
+    },
+    {
+      "id": 4,
+      "title": "Walk with spoon",
+      "body": "sdfgh",
+      "isChecked": false
+    },
+    {
+      "id": 5,
+      "title": "Walk with lama",
+      "body": "sdfgh",
+      "isChecked": true
+    },
+    {
+      "id": 6,
+      "title": "Walk with paka",
+      "body": "sdfgh",
+      "isChecked": true
+    },
+    {
+      "id": 7,
+      "title": "Walk with ref",
+      "body": "sdfgh",
+      "isChecked": false
+    }
+  ]
+}
+

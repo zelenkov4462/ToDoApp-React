@@ -1,8 +1,9 @@
 import React from "react";
 import PostItem from "../PostItem/PostItem";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import Button from "../UI/button/Button";
 
-const PostList = ({ posts, remove }) => {
+const PostList = ({ posts, remove, changeStatus, changeLike }) => {
   if (!posts.length) {
     return <h1>No task</h1>;
   }
@@ -14,6 +15,8 @@ const PostList = ({ posts, remove }) => {
         {posts.map((post, index) => (
           <CSSTransition key={post.id} timeout={500} classNames="post">
             <PostItem
+              changeLike={changeLike}
+              changeStatus={changeStatus}
               remove={remove}
               key={post.id}
               number={index + 1}
