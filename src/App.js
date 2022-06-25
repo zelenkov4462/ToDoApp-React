@@ -10,10 +10,16 @@ import ButtonGroup from "./components/ButtonGroup/Button.Group";
 
 function App() {
   const [posts, setPosts] = useState([
-    { id: 1, title: "aa", body: "zz", status: false, like: true },
-    { id: 2, title: "cc", body: "y", status: true, like: false },
-    { id: 3, title: "zz", body: "j", status: true, like: true },
-    { id: 4, title: "ee", body: "u", status: false, like: false },
+    { id: 1, title: "Погулять", body: "С собакой", status: false, like: false },
+    { id: 2, title: "Ужин", body: "В гостях 18:00", status: true, like: true },
+    {
+      id: 3,
+      title: "Учеба",
+      body: "Универ с пн-пт",
+      status: true,
+      like: false,
+    },
+    { id: 4, title: "Frontend", body: "All-time", status: false, like: true },
   ]);
   const [filter, setFilter] = useState({ sort: "", query: "" });
   const [modal, setModal] = useState(false);
@@ -61,34 +67,21 @@ function App() {
 
   const [deleted, setDeleted] = useState([]);
 
-  // const removePost = (post) => {
-  //   setPosts(posts.filter((p) => p.id !== post.id));
-  //   let deleteArray = (prev) => {
-  //     let deleteItem = [...sortedAndSearchedPosts].filter(
-  //       (p) => p.id === post.id
-  //     );
-  //     return [...prev, deleteItem];
-  //   };
-  //   setDeleted(deleteArray);
-  //   console.log(deleted);
-  // };
-
   const removePost = (post) => {
     setPosts(posts.filter((p) => p.id !== post.id));
     setDeleted((prev) => {
       let deletedItem = [...sortedAndSearchedPosts].filter(
         (p) => p.id === post.id
       );
-      return [...prev, deletedItem];
+      return [...prev, ...deletedItem];
     });
     console.log(deleted);
   };
+  const [filtered, setFiltered] = useState(sortedAndSearchedPosts);
 
   useEffect(() => {
     setFiltered(sortedAndSearchedPosts);
   }, [sortedAndSearchedPosts]);
-
-  const [filtered, setFiltered] = useState(sortedAndSearchedPosts);
 
   function todoFilter(status) {
     if (status === "Completed") {

@@ -3,6 +3,9 @@
   border: 2px solid grey;
   background: orangered;
   border-radius: 10px;
+  &:active {
+    background: orange;
+  }
 }
 
 .btn_create {
@@ -18,4 +21,11 @@
   border: 2px solid grey;
   background: royalblue;
   border-radius: 10px;
+}
+.btn_select {
+  @extend .btn_delete;
+  background: lawngreen;
+  &:focus {
+    background-color: royalblue;
+  }
 }

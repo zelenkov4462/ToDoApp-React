@@ -10,7 +10,8 @@ const PostForm = ({ create }) => {
     const newPost = {
       ...post,
       id: Date.now(),
-      isChecked: false,
+      status: false,
+      like: false,
     };
     create(newPost);
     setPost({ title: "", body: "" });
