@@ -1,4 +1,4 @@
-React {useState, useEffect}.
+React {useState, useEffect}, axios, hooks.
 
 Приложение - ToDo List.
 
